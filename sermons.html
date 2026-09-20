@@ -584,64 +584,18 @@ input {
 
   inset: 0;
 
-  background:
-    radial-gradient(
-      circle at 75% 30%,
-      rgba(56,189,248,0.17),
-      transparent 35%
-    ),
-    linear-gradient(
-      135deg,
-      #071321,
-      #0b1830 55%,
-      #142d49
-    );
+  background-image:
+    url("tswc-images/streching hand.jpeg");
+
+  background-size: cover;
+  background-position: center center;
+  background-repeat: no-repeat;
 }
 
-.sermons-hero-background::before {
-  content: "";
-
-  position: absolute;
-
-  width: 520px;
-  height: 520px;
-
-  right: -170px;
-  top: 80px;
-
-  border-radius: 50%;
-
-  border:
-    1px solid
-    rgba(56,189,248,0.16);
-
-  box-shadow:
-    0 0 0 80px rgba(56,189,248,0.025),
-    0 0 0 160px rgba(56,189,248,0.018);
-}
-
+/* Remove the previous decorative blue circle and WORD text */
+.sermons-hero-background::before,
 .sermons-hero-background::after {
-  content: "WORD";
-
-  position: absolute;
-
-  right: -40px;
-  bottom: -80px;
-
-  font-family:
-    Georgia,
-    "Times New Roman",
-    serif;
-
-  font-size:
-    clamp(10rem, 25vw, 24rem);
-
-  font-style: italic;
-
-  line-height: .8;
-
-  color:
-    rgba(255,255,255,0.035);
+  display: none;
 }
 
 .sermons-hero-overlay {
@@ -652,9 +606,9 @@ input {
   background:
     linear-gradient(
       to bottom,
-      rgba(7,14,25,0.18),
-      rgba(7,14,25,0.25) 45%,
-      rgba(7,14,25,0.65) 100%
+      rgba(7,14,25,0.3),
+      rgba(7,14,25,0.4) 45%,
+      rgba(7,14,25,0.78) 100%
     );
 }
 
@@ -729,7 +683,7 @@ input {
   margin: 28px 0 0;
 
   color:
-    rgba(255,255,255,0.78);
+    rgba(255,255,255,0.88);
 
   font-family:
     Georgia,
@@ -741,7 +695,6 @@ input {
 
   line-height: 1.65;
 }
-
 
 /* =========================================================
    SERMON INTRO
