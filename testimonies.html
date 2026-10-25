@@ -117,16 +117,64 @@
     .cta-button { display: inline-flex; margin-top: 30px; padding: 14px 22px; border-radius: 999px; background: #fff; color: var(--navy); text-decoration: none; font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: .17em; transition: background .25s ease, transform .25s ease; }
     .cta-button:hover { background: var(--blue); transform: translateY(-2px); }
 
-    .swc-footer { padding: 42px 0 46px; background: var(--dark); color: #fff; }
-    .footer-grid { display: grid; grid-template-columns: 1.15fr .9fr .65fr; gap: 42px; }
-    .footer-brand { font: italic 26px Georgia, serif; }
-    .footer-brand span { color: var(--blue); }
-    .footer-copy { max-width: 320px; margin: 15px 0 0; color: rgba(255,255,255,.6); font: 15px/1.6 Georgia, serif; }
-    .footer-heading { margin: 0 0 18px; color: var(--blue); font-size: 10px; text-transform: uppercase; letter-spacing: .2em; }
-    .footer-links { display: grid; gap: 11px; }
-    .footer-links a { color: rgba(255,255,255,.72); text-decoration: none; font-size: 13px; }
-    .footer-links a:hover { color: var(--blue); }
-    .footer-bottom { display: flex; justify-content: space-between; gap: 20px; margin-top: 45px; padding-top: 18px; border-top: 1px solid rgba(255,255,255,.12); color: rgba(255,255,255,.42); font-size: 11px; }
+    .swc-footer { position: relative; overflow: hidden; background: var(--dark); color: white; font-family: Arial, Helvetica, sans-serif; width: 100%; }
+    .swc-footer * { box-sizing: border-box; }
+    .swc-footer-background-word { position: absolute; right: -40px; bottom: -55px; pointer-events: none; white-space: nowrap; }
+    .swc-footer-background-word span { font: italic 300 clamp(9rem,22vw,22rem)/.8 Georgia, "Times New Roman", serif; color: rgba(255,255,255,.035); }
+    .swc-footer-container { width: min(1180px,calc(100% - 40px)); margin: 0 auto; position: relative; z-index: 2; }
+    .swc-newsletter { position: relative; border-bottom: 1px solid rgba(255,255,255,.12); }
+    .swc-newsletter-inner { padding: 42px 0; display: grid; grid-template-columns: minmax(0,1.35fr) minmax(320px,.85fr); gap: 42px; align-items: end; }
+    .swc-eyebrow { display: flex; align-items: center; gap: 12px; margin-bottom: 18px; }
+    .swc-eyebrow-line { width: 38px; height: 1px; background: var(--blue); }
+    .swc-eyebrow-text, .swc-column-heading span { color: rgba(255,255,255,.55); font-size: 10px; font-weight: 600; letter-spacing: .22em; text-transform: uppercase; }
+    .swc-eyebrow-text { color: var(--blue); }
+    .swc-newsletter-title { margin: 0; max-width: 720px; font: 400 clamp(1.85rem,3.5vw,3.15rem)/1.05 Georgia, "Times New Roman", serif; }
+    .swc-newsletter-title em { color: var(--blue); }
+    .swc-newsletter-description { margin: 12px 0 0; max-width: 560px; color: rgba(255,255,255,.68); font: 15px/1.5 Georgia, "Times New Roman", serif; }
+    .swc-newsletter-form-row { display: flex; gap: 8px; }
+    .swc-input-wrapper { position: relative; flex: 1; }
+    .swc-email-input { width: 100%; height: 44px; border: 1px solid rgba(255,255,255,.18); border-radius: 8px; background: rgba(255,255,255,.08); color: white; padding: 0 15px; outline: none; }
+    .swc-email-input::placeholder { color: rgba(255,255,255,.42); }
+    .swc-email-input:focus { border-color: var(--blue); }
+    .swc-subscribe-btn { height: 44px; min-width: 125px; border: 0; border-radius: 8px; background: var(--blue); color: #0d1720; font-size: 11px; font-weight: 700; letter-spacing: .15em; text-transform: uppercase; cursor: pointer; }
+    .swc-newsletter-note { margin: 8px 0 0; color: rgba(255,255,255,.48); font-size: 11px; }
+    .swc-newsletter-message { display: none; color: var(--blue); font-size: 12px; }
+    .swc-newsletter-message.show { display: block; }
+    .swc-main-footer { padding: 42px 0 46px; }
+    .swc-footer-grid { display: grid; grid-template-columns: 1.15fr .9fr .65fr; gap: 42px; }
+    .swc-logo-placeholder { display: inline-flex; align-items: center; justify-content: center; width: 54px; height: 54px; margin-bottom: 16px; border: 1px solid rgba(255,255,255,.25); border-radius: 50%; color: var(--blue); font: italic 300 18px Georgia, serif; text-decoration: none; }
+    .swc-brand-name { margin: 0 0 4px; font: 400 22px Georgia, "Times New Roman", serif; }
+    .swc-brand-name span { color: var(--blue); }
+    .swc-brand-tagline { max-width: 360px; margin: 0 0 17px; color: rgba(255,255,255,.78); font: italic 15px/1.45 Georgia, "Times New Roman", serif; }
+    .swc-small-line { width: 100%; height: 1px; margin-bottom: 17px; background: rgba(255,255,255,.12); }
+    .swc-contact-list, .swc-footer-nav { list-style: none; padding: 0; margin: 0; }
+    .swc-contact-list { margin-bottom: 18px; }
+    .swc-contact-list li { display: flex; gap: 12px; margin-bottom: 9px; font-size: 12px; line-height: 1.55; }
+    .swc-contact-icon { width: 17px; height: 17px; flex-shrink: 0; color: var(--blue); }
+    .swc-contact-list a { color: rgba(255,255,255,.78); text-decoration: none; }
+    .swc-socials { display: flex; gap: 8px; }
+    .swc-social { display: flex; align-items: center; justify-content: center; width: 34px; height: 34px; border: 1px solid rgba(255,255,255,.18); border-radius: 50%; color: rgba(255,255,255,.78); text-decoration: none; transition: .3s ease; }
+    .swc-social:hover { background: var(--blue); color: var(--dark); border-color: var(--blue); }
+    .swc-social svg { width: 15px; height: 15px; }
+    .swc-column-heading { display: flex; align-items: center; gap: 11px; margin-bottom: 16px; }
+    .swc-column-heading-line { width: 32px; height: 1px; background: var(--blue); }
+    .swc-service-box { overflow: hidden; border: 1px solid rgba(255,255,255,.12); border-radius: 12px; background: rgba(255,255,255,.025); }
+    .swc-service-location { padding: 15px 16px; border-bottom: 1px solid rgba(255,255,255,.09); }
+    .swc-service-location:last-child { border-bottom: 0; }
+    .swc-service-location h4 { margin: 0 0 8px; font: italic 300 20px Georgia, "Times New Roman", serif; }
+    .swc-service-row { display: flex; align-items: baseline; gap: 12px; margin-bottom: 5px; }
+    .swc-service-day { width: 44px; flex-shrink: 0; color: rgba(255,255,255,.45); font-size: 9px; letter-spacing: .15em; text-transform: uppercase; }
+    .swc-service-time { color: rgba(255,255,255,.88); font: 14px Georgia, "Times New Roman", serif; }
+    .swc-footer-nav li { margin-bottom: 3px; }
+    .swc-footer-nav a { display: flex; align-items: center; justify-content: space-between; padding: 5px 0; color: rgba(255,255,255,.76); font: italic 15px Georgia, "Times New Roman", serif; text-decoration: none; transition: .3s ease; }
+    .swc-footer-nav a:hover { color: var(--blue); }
+    .swc-footer-bottom { border-top: 1px solid rgba(255,255,255,.1); }
+    .swc-footer-bottom-inner { min-height: 54px; display: flex; align-items: center; justify-content: space-between; gap: 20px; }
+    .swc-copyright { margin: 0; color: rgba(255,255,255,.48); font-size: 11px; }
+    .swc-legal { display: flex; align-items: center; gap: 22px; }
+    .swc-legal a { color: rgba(255,255,255,.5); font-size: 11px; text-decoration: none; }
+    .swc-scroll-top { display: flex; align-items: center; justify-content: center; width: 36px; height: 36px; border: 1px solid rgba(255,255,255,.18); border-radius: 50%; background: transparent; color: rgba(255,255,255,.75); cursor: pointer; }
+    .swc-scroll-top:hover { background: var(--blue); border-color: var(--blue); color: var(--dark); }
     .reveal { opacity: 0; transform: translateY(28px); transition: opacity .8s ease, transform .8s ease; }
     .reveal.visible { opacity: 1; transform: translateY(0); }
 
@@ -140,8 +188,9 @@
       .stories-heading { display: block; }
       .filters { margin-top: 28px; }
       .cta-box { padding: 50px 30px; }
-      .footer-grid { grid-template-columns: 1fr 1fr; }
-      .footer-grid > :first-child { grid-column: 1 / -1; }
+      .swc-newsletter-inner { grid-template-columns: 1fr; gap: 28px; }
+      .swc-footer-grid { grid-template-columns: 1fr 1fr; gap: 34px 30px; }
+      .swc-brand { grid-column: 1 / -1; }
     }
     @media (max-width: 560px) {
       .container { padding-left: 20px; padding-right: 20px; }
@@ -150,8 +199,15 @@
       .story-grid { grid-template-columns: 1fr; }
       .story-card { min-height: 300px; }
       .featured, .intro, .stories, .cta { padding-top: 75px; padding-bottom: 75px; }
-      .footer-grid { grid-template-columns: 1fr; gap: 30px; }
-      .footer-grid > :first-child { grid-column: auto; }
+      .swc-footer-container { width: min(calc(100% - 30px), 1180px); }
+      .swc-newsletter-inner { padding: 34px 0; }
+      .swc-newsletter-form-row { flex-direction: column; }
+      .swc-subscribe-btn { width: 100%; }
+      .swc-main-footer { padding: 34px 0 38px; }
+      .swc-footer-grid { grid-template-columns: 1fr; gap: 32px; }
+      .swc-brand { grid-column: auto; }
+      .swc-footer-bottom-inner { min-height: auto; padding: 16px 0; flex-direction: column; align-items: flex-start; }
+      .swc-legal { width: 100%; justify-content: space-between; }
       .footer-bottom { display: block; line-height: 1.8; }
     }
     @media (prefers-reduced-motion: reduce) { *, *::before, *::after { animation-duration: .01ms !important; transition-duration: .01ms !important; scroll-behavior: auto !important; } }
@@ -230,7 +286,16 @@
     <section class="cta"><div class="container"><div class="cta-box reveal"><div class="cta-content"><div class="eyebrow">Your story matters</div><h2 class="cta-title">There is room<br>for <em>your story.</em></h2><p class="cta-text">Whether you are taking your first step or looking for a place to put down roots, you are welcome at The Still Waters Church.</p><a class="cta-button" href="contact.html">Come as you are <span>↗</span></a></div></div></div></section>
   </main>
 
-  <footer class="swc-footer"><div class="container"><div class="footer-grid"><div><div class="footer-brand">The Still <span>Waters</span></div><p class="footer-copy">A place where your soul can breathe, your questions are welcome, and you never have to walk alone.</p></div><div><h3 class="footer-heading">Explore</h3><nav class="footer-links"><a href="about.html">About the church</a><a href="sermons.html">Listen to sermons</a><a href="testimonies.html">Read testimonies</a></nav></div><div><h3 class="footer-heading">Connect</h3><nav class="footer-links"><a href="contact.html">Plan a visit</a><a href="mailto:hello@stillwaterschurch.org">Email us</a></nav></div></div><div class="footer-bottom"><span>© 2026 The Still Waters Church</span><span>Come as you are.</span></div></div></footer>
+  <footer class="swc-footer">
+    <div class="swc-footer-background-word"><span>Still Waters</span></div>
+    <section class="swc-newsletter"><div class="swc-footer-container"><div class="swc-newsletter-inner"><div><div class="swc-eyebrow"><span class="swc-eyebrow-line"></span><span class="swc-eyebrow-text">Stay Connected</span></div><h2 class="swc-newsletter-title">Words for the journey— <em>straight to your inbox.</em></h2><p class="swc-newsletter-description">Receive encouragement, church updates, upcoming gatherings and moments from the life of The Still Waters Church.</p></div><div><form class="swc-newsletter-form" id="swcNewsletterForm"><div class="swc-newsletter-form-row"><div class="swc-input-wrapper"><input id="swcEmail" class="swc-email-input" type="email" placeholder="you@example.com" required></div><button class="swc-subscribe-btn" type="submit">Subscribe</button></div></form><p class="swc-newsletter-note">A note from The Still Waters Church. Unsubscribe anytime.</p><p class="swc-newsletter-message" id="swcNewsletterMessage">Thank you for joining us. We'll be in touch.</p></div></div></div></section>
+    <div class="swc-main-footer"><div class="swc-footer-container"><div class="swc-footer-grid">
+      <div class="swc-brand"><a href="index.html" class="swc-logo-placeholder">SW</a><h3 class="swc-brand-name">THE STILL <span>WATERS</span> CHURCH</h3><p class="swc-brand-tagline">A place to encounter God, grow in faith, and find a people to journey with.</p><div class="swc-small-line"></div><ul class="swc-contact-list"><li><svg class="swc-contact-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 10c0 5-8 12-8 12S4 15 4 10a8 8 0 1 1 16 0Z"/><circle cx="12" cy="10" r="3"/></svg><span>15 Church Street, Wakefield, West Yorkshire, United Kingdom</span></li><li><svg class="swc-contact-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg><a href="tel:+441234567890">+44 1234 567 890</a></li><li><svg class="swc-contact-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m22 7-9 5.7a2 2 0 0 1-2 0L2 7"/><rect x="2" y="4" width="20" height="16" rx="2"/></svg><a href="mailto:hello@stillwaterschurch.org">hello@stillwaterschurch.org</a></li></ul><div class="swc-socials"><a href="#" class="swc-social" aria-label="Facebook">f</a><a href="#" class="swc-social" aria-label="Instagram">◎</a><a href="#" class="swc-social" aria-label="YouTube">▶</a><a href="#" class="swc-social" aria-label="TikTok">♪</a></div></div>
+      <div><div class="swc-column-heading"><span class="swc-column-heading-line"></span><span>Service Times</span></div><div class="swc-service-box"><div class="swc-service-location"><h4>Wakefield</h4><div class="swc-service-row"><span class="swc-service-day">Sun</span><span class="swc-service-time">10:30 AM</span></div><div class="swc-service-row"><span class="swc-service-day">Wed</span><span class="swc-service-time">7:00 PM</span></div></div><div class="swc-service-location"><h4>Prayer Gathering</h4><div class="swc-service-row"><span class="swc-service-day">Fri</span><span class="swc-service-time">7:00 PM</span></div></div><div class="swc-service-location"><h4>First Sunday</h4><div class="swc-service-row"><span class="swc-service-day">Sun</span><span class="swc-service-time">Communion · 10:30 AM</span></div></div></div></div>
+      <div><div class="swc-column-heading"><span class="swc-column-heading-line"></span><span>Explore</span></div><ul class="swc-footer-nav"><li><a href="index.html"><span>Home</span><span>↗</span></a></li><li><a href="about.html"><span>About Us</span><span>↗</span></a></li><li><a href="#"><span>Our Pastor</span><span>↗</span></a></li><li><a href="testimonies.html"><span>Stories &amp; Testimonies</span><span>↗</span></a></li><li><a href="sermons.html"><span>Sermons</span><span>↗</span></a></li><li><a href="contact.html"><span>Plan Your Visit</span><span>↗</span></a></li><li><a href="contact.html"><span>Contact</span><span>↗</span></a></li></ul></div>
+    </div></div></div>
+    <div class="swc-footer-bottom"><div class="swc-footer-container"><div class="swc-footer-bottom-inner"><p class="swc-copyright">© <span id="swcYear">2026</span> The Still Waters Church · All rights reserved.</p><div class="swc-legal"><a href="#">Privacy</a><a href="#">Terms</a><button class="swc-scroll-top" id="swcScrollTop" aria-label="Back to top">↑</button></div></div></div></div>
+  </footer>
 
   <script>
     (function () {
@@ -281,6 +346,22 @@
       document.getElementById("previousQuote").addEventListener("click", function () { showQuote(-1); });
       document.getElementById("nextQuote").addEventListener("click", function () { showQuote(1); });
       quote.style.transition = "opacity .25s ease";
+
+      var newsletterForm = document.getElementById("swcNewsletterForm");
+      var newsletterMessage = document.getElementById("swcNewsletterMessage");
+      if (newsletterForm) {
+        newsletterForm.addEventListener("submit", function (event) {
+          event.preventDefault();
+          newsletterMessage.classList.add("show");
+          newsletterForm.reset();
+          window.setTimeout(function () { newsletterMessage.classList.remove("show"); }, 5000);
+        });
+      }
+
+      var scrollTopButton = document.getElementById("swcScrollTop");
+      if (scrollTopButton) {
+        scrollTopButton.addEventListener("click", function () { window.scrollTo({ top: 0, behavior: "smooth" }); });
+      }
 
       var revealElements = document.querySelectorAll(".reveal");
       if ("IntersectionObserver" in window) {
