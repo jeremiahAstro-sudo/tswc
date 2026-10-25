@@ -1,0 +1,293 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Stories of hope, healing, and belonging from The Still Waters Church community.">
+  <title>Testimonies | The Still Waters Church</title>
+  <style>
+    :root {
+      --blue: #38bdf8;
+      --blue-soft: #eaf8fd;
+      --navy: #0b1830;
+      --dark: #101820;
+      --paper: #f7f8f5;
+      --ink: #263444;
+      --muted: #667383;
+      --line: rgba(11, 24, 48, 0.12);
+    }
+
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body { margin: 0; overflow-x: hidden; background: var(--paper); color: var(--ink); font-family: Arial, Helvetica, sans-serif; }
+    button, input, textarea { font: inherit; }
+    .container { width: 100%; max-width: 1200px; margin: 0 auto; padding: 0 24px; }
+
+    .hero-nav { position: fixed; inset: 0 0 auto; z-index: 1000; background: rgba(10,15,25,.22); backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px); border-bottom: 1px solid rgba(255,255,255,.05); transition: background .4s ease, box-shadow .4s ease, border-color .4s ease; }
+    .hero-nav.scrolled { background: rgba(255,255,255,.96); border-bottom-color: var(--line); box-shadow: 0 8px 30px rgba(11,24,48,.12); backdrop-filter: blur(18px); -webkit-backdrop-filter: blur(18px); }
+    .nav-inner { display: flex; align-items: center; justify-content: space-between; padding: 18px 0; transition: padding .3s ease; }
+    .hero-nav.scrolled .nav-inner { padding: 12px 0; }
+    .brand { display: flex; align-items: center; gap: 12px; color: #fff; text-decoration: none; }
+    .brand-logo { width: 50px; height: 50px; object-fit: contain; transition: transform .5s ease, width .3s ease, height .3s ease; }
+    .brand:hover .brand-logo { transform: rotate(3deg); }
+    .hero-nav.scrolled .brand-logo { width: 42px; height: 42px; }
+    .brand-name { display: flex; flex-direction: column; line-height: 1; }
+    .brand-main { font: italic 300 18px Georgia, "Times New Roman", serif; letter-spacing: -.02em; }
+    .brand-sub { margin-top: 5px; color: rgba(255,255,255,.6); font-size: 9px; font-weight: 500; text-transform: uppercase; letter-spacing: .22em; }
+    .hero-nav.scrolled .brand-main, .hero-nav.scrolled .brand-sub { color: var(--navy); }
+    .desktop-nav { display: none; align-items: center; gap: 2px; }
+    .nav-link { position: relative; display: inline-flex; padding: 10px 14px; color: rgba(255,255,255,.9); text-decoration: none; font-size: 12px; font-weight: 500; text-transform: uppercase; letter-spacing: .18em; transition: color .3s ease; }
+    .nav-link:hover, .nav-link.nav-active, .hero-nav.scrolled .nav-link.nav-active { color: var(--blue); }
+    .nav-link span::after { content: ""; position: absolute; left: 14px; right: 14px; bottom: 5px; height: 1px; background: var(--blue); transform: scaleX(0); transform-origin: left; transition: transform .3s ease; }
+    .nav-link:hover span::after, .nav-link.nav-active span::after { transform: scaleX(1); }
+    .hero-nav.scrolled .nav-link { color: var(--navy); }
+    .nav-right { display: flex; align-items: center; gap: 8px; }
+    .nav-cta { display: none; padding: 11px 19px; border-radius: 999px; background: #fff; color: #222; text-decoration: none; font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: .18em; }
+    .nav-cta:hover, .hero-nav.scrolled .nav-cta:hover { background: var(--blue); color: #fff; }
+    .hero-nav.scrolled .nav-cta { background: var(--navy); color: #fff; }
+    .mobile-menu { display: inline-flex; align-items: center; justify-content: center; width: 40px; height: 40px; border: 1px solid rgba(255,255,255,.3); border-radius: 50%; background: transparent; cursor: pointer; }
+    .hero-nav.scrolled .mobile-menu { border-color: rgba(11,24,48,.24); }
+    .mobile-menu-icon { position: relative; width: 18px; height: 14px; }
+    .mobile-menu-icon span { position: absolute; left: 0; width: 18px; height: 1.5px; background: #fff; transition: transform .3s ease, top .3s ease, opacity .3s ease; }
+    .hero-nav.scrolled .mobile-menu-icon span { background: var(--navy); }
+    .mobile-menu-icon span:nth-child(1) { top: 0; } .mobile-menu-icon span:nth-child(2) { top: 6px; } .mobile-menu-icon span:nth-child(3) { top: 12px; }
+    .mobile-menu.active .mobile-menu-icon span:nth-child(1) { top: 6px; transform: rotate(45deg); }
+    .mobile-menu.active .mobile-menu-icon span:nth-child(2) { opacity: 0; }
+    .mobile-menu.active .mobile-menu-icon span:nth-child(3) { top: 6px; transform: rotate(-45deg); }
+    .mobile-nav { position: absolute; top: calc(100% + 8px); left: 20px; right: 20px; padding: 12px; border: 1px solid rgba(255,255,255,.15); border-radius: 18px; background: rgba(8,15,25,.97); opacity: 0; visibility: hidden; transform: translateY(-10px); transition: opacity .3s ease, transform .3s ease, visibility .3s ease; pointer-events: none; }
+    .mobile-nav.active { opacity: 1; visibility: visible; transform: translateY(0); pointer-events: auto; }
+    .mobile-nav a { display: flex; justify-content: space-between; padding: 14px; color: rgba(255,255,255,.9); text-decoration: none; font-size: 12px; text-transform: uppercase; letter-spacing: .18em; border-radius: 10px; }
+    .mobile-nav a:hover, .mobile-nav a.nav-active { color: var(--blue); background: rgba(56,189,248,.08); }
+    .mobile-nav-divider { height: 1px; margin: 5px 0; background: rgba(255,255,255,.08); }
+    .mobile-visit { justify-content: center !important; margin-top: 6px; background: var(--blue) !important; color: #fff !important; border-radius: 999px !important; }
+
+    .testimony-hero { position: relative; min-height: 74vh; display: flex; align-items: flex-end; overflow: hidden; background: var(--navy); }
+    .testimony-hero-image { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: center 42%; transform: scale(1.04); animation: heroImage 12s ease-out forwards; }
+    @keyframes heroImage { from { transform: scale(1.1); } to { transform: scale(1.04); } }
+    .testimony-hero::after { content: ""; position: absolute; inset: 0; background: linear-gradient(to bottom, rgba(7,14,25,.42), rgba(7,14,25,.25) 34%, rgba(7,14,25,.9) 100%); }
+    .hero-content { position: relative; z-index: 1; width: 100%; padding: 160px 0 90px; }
+    .eyebrow, .section-label { display: flex; align-items: center; gap: 12px; color: var(--blue); font-size: 10px; font-weight: 700; text-transform: uppercase; letter-spacing: .22em; }
+    .eyebrow::before, .section-label::before { content: ""; width: 38px; height: 1px; background: var(--blue); }
+    .hero-title { max-width: 850px; margin: 22px 0 0; color: #fff; font: 400 clamp(3.3rem, 8vw, 7.2rem)/.95 Georgia, "Times New Roman", serif; letter-spacing: -.045em; }
+    .hero-title em, .section-title em { color: var(--blue); font-weight: 300; }
+    .hero-copy { max-width: 650px; margin: 28px 0 0; color: rgba(255,255,255,.8); font: 18px/1.65 Georgia, "Times New Roman", serif; }
+
+    .intro { padding: 110px 0 85px; background: var(--paper); }
+    .intro-grid { display: grid; grid-template-columns: .65fr 1.35fr; gap: 80px; align-items: start; }
+    .section-title { margin: 18px 0 0; color: var(--navy); font: 400 clamp(2.4rem, 4.5vw, 4.5rem)/1.02 Georgia, "Times New Roman", serif; letter-spacing: -.035em; }
+    .intro-copy { max-width: 760px; }
+    .intro-copy p { margin: 0 0 25px; color: #435161; font: 18px/1.8 Georgia, "Times New Roman", serif; }
+    .intro-copy p:last-child { margin-bottom: 0; }
+
+    .stories { padding: 75px 0 110px; background: #fff; }
+    .stories-heading { display: flex; align-items: flex-end; justify-content: space-between; gap: 30px; margin-bottom: 45px; }
+    .stories-heading .section-title { font-size: clamp(2.5rem, 5vw, 4.8rem); }
+    .filters { display: flex; flex-wrap: wrap; gap: 8px; }
+    .filter-button { padding: 10px 14px; border: 1px solid var(--line); border-radius: 999px; background: transparent; color: var(--muted); cursor: pointer; font-size: 10px; font-weight: 700; text-transform: uppercase; letter-spacing: .14em; transition: color .25s ease, background .25s ease, border-color .25s ease; }
+    .filter-button:hover, .filter-button.active { border-color: var(--navy); background: var(--navy); color: #fff; }
+    .story-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 22px; }
+    .story-card { display: flex; flex-direction: column; min-height: 340px; padding: 30px; border: 1px solid var(--line); background: var(--paper); transition: transform .35s ease, box-shadow .35s ease, opacity .25s ease; }
+    .story-card:hover { transform: translateY(-6px); box-shadow: 0 18px 45px rgba(11,24,48,.1); }
+    .story-card.is-hidden { display: none; }
+    .story-mark { color: var(--blue); font: 46px/1 Georgia, serif; }
+    .story-quote { margin: 17px 0 26px; color: var(--navy); font: italic 22px/1.35 Georgia, serif; }
+    .story-person { display: flex; align-items: center; gap: 12px; margin-top: auto; padding-top: 20px; border-top: 1px solid var(--line); }
+    .story-avatar { display: grid; place-items: center; width: 38px; height: 38px; border-radius: 50%; background: var(--navy); color: var(--blue); font: 700 12px Georgia, serif; }
+    .story-person strong { display: block; color: var(--navy); font-size: 12px; }
+    .story-person span { display: block; margin-top: 4px; color: var(--muted); font-size: 10px; text-transform: uppercase; letter-spacing: .13em; }
+
+    .featured { padding: 100px 0; background: var(--blue-soft); }
+    .featured-grid { display: grid; grid-template-columns: .75fr 1.25fr; gap: 75px; align-items: center; }
+    .featured-kicker { color: var(--blue); font-size: 10px; font-weight: 700; text-transform: uppercase; letter-spacing: .22em; }
+    .featured-title { margin: 18px 0 0; color: var(--navy); font: 400 clamp(2.5rem, 5vw, 4.8rem)/1 Georgia, Georgia, serif; letter-spacing: -.04em; }
+    .featured-title em { color: #0b83b7; }
+    .featured-quote { margin: 0; color: var(--navy); font: italic clamp(1.5rem, 3vw, 2.45rem)/1.35 Georgia, serif; }
+    .featured-author { margin: 25px 0 0; color: var(--muted); font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: .18em; }
+    .quote-controls { display: flex; gap: 9px; margin-top: 28px; }
+    .quote-control { width: 42px; height: 42px; border: 1px solid rgba(11,24,48,.25); border-radius: 50%; background: transparent; color: var(--navy); cursor: pointer; font-size: 18px; transition: background .25s ease, color .25s ease; }
+    .quote-control:hover { background: var(--navy); color: #fff; }
+
+    .cta { padding: 100px 0; background: var(--paper); }
+    .cta-box { position: relative; overflow: hidden; padding: 70px 75px; border-radius: 18px; background: linear-gradient(135deg, var(--navy), #142d49); color: #fff; }
+    .cta-box::after { content: ""; position: absolute; width: 380px; height: 380px; right: -150px; top: -180px; border: 1px solid rgba(56,189,248,.25); border-radius: 50%; }
+    .cta-content { position: relative; z-index: 1; max-width: 700px; }
+    .cta-title { margin: 18px 0; font: 400 clamp(2.4rem, 5vw, 4.8rem)/1 Georgia, serif; letter-spacing: -.04em; }
+    .cta-title em { color: var(--blue); }
+    .cta-text { max-width: 630px; margin: 0; color: rgba(255,255,255,.72); font: 17px/1.7 Georgia, serif; }
+    .cta-button { display: inline-flex; margin-top: 30px; padding: 14px 22px; border-radius: 999px; background: #fff; color: var(--navy); text-decoration: none; font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: .17em; transition: background .25s ease, transform .25s ease; }
+    .cta-button:hover { background: var(--blue); transform: translateY(-2px); }
+
+    .swc-footer { padding: 42px 0 46px; background: var(--dark); color: #fff; }
+    .footer-grid { display: grid; grid-template-columns: 1.15fr .9fr .65fr; gap: 42px; }
+    .footer-brand { font: italic 26px Georgia, serif; }
+    .footer-brand span { color: var(--blue); }
+    .footer-copy { max-width: 320px; margin: 15px 0 0; color: rgba(255,255,255,.6); font: 15px/1.6 Georgia, serif; }
+    .footer-heading { margin: 0 0 18px; color: var(--blue); font-size: 10px; text-transform: uppercase; letter-spacing: .2em; }
+    .footer-links { display: grid; gap: 11px; }
+    .footer-links a { color: rgba(255,255,255,.72); text-decoration: none; font-size: 13px; }
+    .footer-links a:hover { color: var(--blue); }
+    .footer-bottom { display: flex; justify-content: space-between; gap: 20px; margin-top: 45px; padding-top: 18px; border-top: 1px solid rgba(255,255,255,.12); color: rgba(255,255,255,.42); font-size: 11px; }
+    .reveal { opacity: 0; transform: translateY(28px); transition: opacity .8s ease, transform .8s ease; }
+    .reveal.visible { opacity: 1; transform: translateY(0); }
+
+    @media (min-width: 1024px) {
+      .desktop-nav, .nav-cta { display: flex; }
+      .mobile-menu { display: none; }
+    }
+    @media (max-width: 800px) {
+      .intro-grid, .featured-grid { grid-template-columns: 1fr; gap: 35px; }
+      .story-grid { grid-template-columns: 1fr 1fr; }
+      .stories-heading { display: block; }
+      .filters { margin-top: 28px; }
+      .cta-box { padding: 50px 30px; }
+      .footer-grid { grid-template-columns: 1fr 1fr; }
+      .footer-grid > :first-child { grid-column: 1 / -1; }
+    }
+    @media (max-width: 560px) {
+      .container { padding-left: 20px; padding-right: 20px; }
+      .hero-content { padding-bottom: 70px; }
+      .hero-copy { font-size: 16px; }
+      .story-grid { grid-template-columns: 1fr; }
+      .story-card { min-height: 300px; }
+      .featured, .intro, .stories, .cta { padding-top: 75px; padding-bottom: 75px; }
+      .footer-grid { grid-template-columns: 1fr; gap: 30px; }
+      .footer-grid > :first-child { grid-column: auto; }
+      .footer-bottom { display: block; line-height: 1.8; }
+    }
+    @media (prefers-reduced-motion: reduce) { *, *::before, *::after { animation-duration: .01ms !important; transition-duration: .01ms !important; scroll-behavior: auto !important; } }
+  </style>
+</head>
+<body>
+  <header class="hero-nav" id="heroNav">
+    <div class="container">
+      <div class="nav-inner">
+        <a href="index.html" class="brand">
+          <img class="brand-logo" src="https://storage.googleapis.com/production-fatcow-v1-0-3/043/200043/aFNWj1vP/de960ecce32c4847a9ca3c0269ac7518" alt="The Still Waters Church">
+          <span class="brand-name"><span class="brand-main">The Still Waters</span><span class="brand-sub">Church</span></span>
+        </a>
+        <nav class="desktop-nav" aria-label="Primary navigation">
+          <a href="index.html" class="nav-link"><span>Home</span></a>
+          <a href="about.html" class="nav-link"><span>About</span></a>
+          <a href="sermons.html" class="nav-link"><span>Sermons</span></a>
+          <a href="testimonies.html" class="nav-link nav-active" aria-current="page"><span>Testimonies</span></a>
+          <a href="contact.html" class="nav-link"><span>Contact</span></a>
+        </nav>
+        <div class="nav-right">
+          <a href="contact.html" class="nav-cta">Plan a visit <span>↗</span></a>
+          <button type="button" class="mobile-menu" id="mobileMenuButton" aria-label="Open menu" aria-expanded="false"><span class="mobile-menu-icon"><span></span><span></span><span></span></span></button>
+        </div>
+      </div>
+      <nav class="mobile-nav" id="mobileNav" aria-hidden="true">
+        <a href="index.html"><span>Home</span><span>↗</span></a>
+        <a href="about.html"><span>About</span><span>↗</span></a>
+        <a href="sermons.html"><span>Sermons</span><span>↗</span></a>
+        <a href="testimonies.html" class="nav-active" aria-current="page"><span>Testimonies</span><span>↗</span></a>
+        <a href="contact.html"><span>Contact</span><span>↗</span></a>
+        <div class="mobile-nav-divider"></div>
+        <a class="mobile-visit" href="contact.html"><span>Plan a visit</span><span>↗</span></a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <section class="testimony-hero">
+      <img class="testimony-hero-image" src="https://images.unsplash.com/photo-1519491050282-cf00c82424b4?auto=format&fit=crop&w=2200&q=85" alt="People gathered together in a quiet church" />
+      <div class="container hero-content">
+        <div class="eyebrow">Stories from our church</div>
+        <h1 class="hero-title">Real lives.<br><em>Steady hope.</em></h1>
+        <p class="hero-copy">Every story is a reminder that no one walks alone. Read how God has met people in the ordinary, difficult, beautiful places of life.</p>
+      </div>
+    </section>
+
+    <section class="intro">
+      <div class="container intro-grid reveal">
+        <div><div class="section-label">A living community</div><h2 class="section-title">Hope has a<br><em>voice.</em></h2></div>
+        <div class="intro-copy"><p>Testimonies are more than stories we tell. They are moments of courage, answered prayer, new beginnings, and quiet faithfulness shared with one another.</p><p>What you read here belongs to people who have found room to breathe, room to heal, and room to become who they were created to be.</p></div>
+      </div>
+    </section>
+
+    <section class="stories" id="stories">
+      <div class="container">
+        <div class="stories-heading reveal"><div><div class="section-label">From the Still Waters family</div><h2 class="section-title">Stories that<br><em>stay with you.</em></h2></div><div class="filters" role="group" aria-label="Filter testimonies"><button class="filter-button active" data-filter="all" type="button">All stories</button><button class="filter-button" data-filter="belonging" type="button">Belonging</button><button class="filter-button" data-filter="healing" type="button">Healing</button><button class="filter-button" data-filter="faith" type="button">Faith</button></div></div>
+        <div class="story-grid">
+          <article class="story-card reveal" data-category="belonging"><div class="story-mark">“</div><p class="story-quote">I came looking for a place to sit quietly. I found a family that noticed when I needed someone beside me.</p><div class="story-person"><div class="story-avatar">AM</div><div><strong>Amara M.</strong><span>Finding belonging</span></div></div></article>
+          <article class="story-card reveal" data-category="healing"><div class="story-mark">“</div><p class="story-quote">The prayers of this church carried me through a season I thought would break me. I am standing, and I am not standing alone.</p><div class="story-person"><div class="story-avatar">JT</div><div><strong>James T.</strong><span>A new beginning</span></div></div></article>
+          <article class="story-card reveal" data-category="faith"><div class="story-mark">“</div><p class="story-quote">I learned that faith does not always feel loud. Sometimes it is simply showing up, breathing deep, and trusting God with the next step.</p><div class="story-person"><div class="story-avatar">RN</div><div><strong>Ruth N.</strong><span>Learning to trust</span></div></div></article>
+          <article class="story-card reveal" data-category="healing"><div class="story-mark">“</div><p class="story-quote">There was no pressure to have the right words. There was just grace, week after week, until my heart began to feel like home again.</p><div class="story-person"><div class="story-avatar">DK</div><div><strong>Daniel K.</strong><span>Restored by grace</span></div></div></article>
+          <article class="story-card reveal" data-category="faith"><div class="story-mark">“</div><p class="story-quote">My questions were welcomed here. That gave my faith space to grow into something honest, steady, and truly mine.</p><div class="story-person"><div class="story-avatar">LS</div><div><strong>Leah S.</strong><span>An honest faith</span></div></div></article>
+          <article class="story-card reveal" data-category="belonging"><div class="story-mark">“</div><p class="story-quote">I expected a Sunday service. I did not expect people to remember my name, celebrate my small wins, and make space for my whole life.</p><div class="story-person"><div class="story-avatar">OB</div><div><strong>Owen B.</strong><span>More than a visit</span></div></div></article>
+        </div>
+      </div>
+    </section>
+
+    <section class="featured">
+      <div class="container featured-grid reveal">
+        <div><div class="featured-kicker">A word for today</div><h2 class="featured-title">You are<br><em>not alone.</em></h2><div class="quote-controls"><button class="quote-control" id="previousQuote" type="button" aria-label="Previous quote">←</button><button class="quote-control" id="nextQuote" type="button" aria-label="Next quote">→</button></div></div>
+        <div><blockquote class="featured-quote" id="featuredQuote">“I used to believe I had to arrive with everything figured out. This community taught me that God meets us while we are still becoming.”</blockquote><p class="featured-author" id="featuredAuthor">Maya R. · Growing in grace</p></div>
+      </div>
+    </section>
+
+    <section class="cta"><div class="container"><div class="cta-box reveal"><div class="cta-content"><div class="eyebrow">Your story matters</div><h2 class="cta-title">There is room<br>for <em>your story.</em></h2><p class="cta-text">Whether you are taking your first step or looking for a place to put down roots, you are welcome at The Still Waters Church.</p><a class="cta-button" href="contact.html">Come as you are <span>↗</span></a></div></div></div></section>
+  </main>
+
+  <footer class="swc-footer"><div class="container"><div class="footer-grid"><div><div class="footer-brand">The Still <span>Waters</span></div><p class="footer-copy">A place where your soul can breathe, your questions are welcome, and you never have to walk alone.</p></div><div><h3 class="footer-heading">Explore</h3><nav class="footer-links"><a href="about.html">About the church</a><a href="sermons.html">Listen to sermons</a><a href="testimonies.html">Read testimonies</a></nav></div><div><h3 class="footer-heading">Connect</h3><nav class="footer-links"><a href="contact.html">Plan a visit</a><a href="mailto:hello@stillwaterschurch.org">Email us</a></nav></div></div><div class="footer-bottom"><span>© 2026 The Still Waters Church</span><span>Come as you are.</span></div></div></footer>
+
+  <script>
+    (function () {
+      "use strict";
+      var nav = document.getElementById("heroNav");
+      var menuButton = document.getElementById("mobileMenuButton");
+      var mobileNav = document.getElementById("mobileNav");
+
+      function closeMenu() {
+        menuButton.classList.remove("active");
+        mobileNav.classList.remove("active");
+        menuButton.setAttribute("aria-expanded", "false");
+        menuButton.setAttribute("aria-label", "Open menu");
+        mobileNav.setAttribute("aria-hidden", "true");
+      }
+
+      menuButton.addEventListener("click", function () {
+        var isOpen = menuButton.classList.toggle("active");
+        mobileNav.classList.toggle("active", isOpen);
+        menuButton.setAttribute("aria-expanded", String(isOpen));
+        menuButton.setAttribute("aria-label", isOpen ? "Close menu" : "Open menu");
+        mobileNav.setAttribute("aria-hidden", String(!isOpen));
+      });
+      mobileNav.querySelectorAll("a").forEach(function (link) { link.addEventListener("click", closeMenu); });
+      window.addEventListener("scroll", function () { nav.classList.toggle("scrolled", window.scrollY > 30); }, { passive: true });
+      window.dispatchEvent(new Event("scroll"));
+      window.addEventListener("resize", function () { if (window.innerWidth >= 1024) closeMenu(); });
+
+      var filterButtons = document.querySelectorAll(".filter-button");
+      var cards = document.querySelectorAll(".story-card");
+      filterButtons.forEach(function (button) {
+        button.addEventListener("click", function () {
+          var filter = button.getAttribute("data-filter");
+          filterButtons.forEach(function (item) { item.classList.toggle("active", item === button); });
+          cards.forEach(function (card) { card.classList.toggle("is-hidden", filter !== "all" && card.getAttribute("data-category") !== filter); });
+        });
+      });
+
+      var quotes = [
+        ["I used to believe I had to arrive with everything figured out. This community taught me that God meets us while we are still becoming.", "Maya R. · Growing in grace"],
+        ["The first time I asked for prayer, I expected a quick answer. Instead, I found people willing to keep walking with me.", "Samuel A. · Held in community"],
+        ["There is a kind of peace that comes from knowing you have a place to return to. Still Waters became that place for me.", "Nia W. · Finding peace"]
+      ];
+      var quoteIndex = 0;
+      var quote = document.getElementById("featuredQuote");
+      var author = document.getElementById("featuredAuthor");
+      function showQuote(direction) { quoteIndex = (quoteIndex + direction + quotes.length) % quotes.length; quote.style.opacity = "0"; window.setTimeout(function () { quote.textContent = "“" + quotes[quoteIndex][0] + "”"; author.textContent = quotes[quoteIndex][1]; quote.style.opacity = "1"; }, 150); }
+      document.getElementById("previousQuote").addEventListener("click", function () { showQuote(-1); });
+      document.getElementById("nextQuote").addEventListener("click", function () { showQuote(1); });
+      quote.style.transition = "opacity .25s ease";
+
+      var revealElements = document.querySelectorAll(".reveal");
+      if ("IntersectionObserver" in window) {
+        var observer = new IntersectionObserver(function (entries) { entries.forEach(function (entry) { if (entry.isIntersecting) { entry.target.classList.add("visible"); observer.unobserve(entry.target); } }); }, { threshold: .1 });
+        revealElements.forEach(function (element) { observer.observe(element); });
+      } else { revealElements.forEach(function (element) { element.classList.add("visible"); }); }
+    }());
+  </script>
+</body>
+</html>
