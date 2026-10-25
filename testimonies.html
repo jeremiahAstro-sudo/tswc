@@ -108,7 +108,8 @@
     .quote-control:hover { background: var(--navy); color: #fff; }
 
     .cta { padding: 100px 0; background: var(--paper); }
-    .cta-box { position: relative; overflow: hidden; padding: 70px 75px; border-radius: 18px; background: linear-gradient(135deg, var(--navy), #142d49); color: #fff; }
+    .cta-box { position: relative; overflow: hidden; padding: 70px 75px; border-radius: 18px; background: var(--navy) url("https://images.unsplash.com/photo-1507692049790-de58290a?auto=format&fit=crop&w=1800&q=85") center/cover no-repeat; color: #fff; }
+    .cta-box::before { content: ""; position: absolute; inset: 0; background: linear-gradient(100deg, rgba(7,14,25,.92), rgba(11,24,48,.7) 58%, rgba(11,24,48,.46)); }
     .cta-box::after { content: ""; position: absolute; width: 380px; height: 380px; right: -150px; top: -180px; border: 1px solid rgba(56,189,248,.25); border-radius: 50%; }
     .cta-content { position: relative; z-index: 1; max-width: 700px; }
     .cta-title { margin: 18px 0; font: 400 clamp(2.4rem, 5vw, 4.8rem)/1 Georgia, serif; letter-spacing: -.04em; }
