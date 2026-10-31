@@ -272,7 +272,7 @@
       height: 50px;
 
       object-fit: contain;
-      transform: scale(1.15);
+      transform: scale(1.22);
 
       transition:
         transform 0.5s ease,
@@ -282,7 +282,7 @@
 
 
     .brand:hover .brand-logo {
-      transform: scale(1.15) rotate(3deg);
+      transform: scale(1.22) rotate(3deg);
     }
 
 
@@ -857,7 +857,7 @@
 
       color: white;
 
-      font-size: 3.2rem;
+      font-size: 3rem;
 
       line-height: 0.96;
 
@@ -875,19 +875,19 @@
 
     @media (min-width: 640px) {
       .hero-title {
-        font-size: 3.75rem;
+        font-size: 3.5rem;
       }
     }
 
     @media (min-width: 768px) {
       .hero-title {
-        font-size: 4.375rem;
+        font-size: 4.1rem;
       }
     }
 
     @media (min-width: 1024px) {
       .hero-title {
-        font-size: 6.5rem;
+        font-size: 6rem;
       }
     }
 

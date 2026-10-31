@@ -128,7 +128,7 @@ input {
   height: 50px;
 
   object-fit: contain;
-  transform: scale(1.15);
+  transform: scale(1.22);
 
   transition:
     transform 0.5s ease,
@@ -137,7 +137,7 @@ input {
 }
 
 .brand:hover .brand-logo {
-  transform: scale(1.15) rotate(3deg);
+  transform: scale(1.22) rotate(3deg);
 }
 
 .hero-nav.scrolled .brand-logo {
@@ -2406,4 +2406,3 @@ input {
   }
 
 }
-
